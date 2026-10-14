@@ -46,21 +46,16 @@
   <main>
     <!-- Hero Section -->
     <section id="hero" class="section-full section-hero">
-      <!-- Decorative background curves (SVG) -->
       <div class="hero-bg-decor" aria-hidden="true">
-        <!-- Top left peach organic curve -->
         <svg class="bg-peach-blob" viewBox="0 0 400 300" fill="none">
           <path d="M-50,-50 C120,-30 250,50 200,180 C150,300 0,260 -50,220 Z" fill="var(--brand-peach)" opacity="0.85"/>
         </svg>
-
-        <!-- Right side large tropical orange wave -->
         <svg class="bg-orange-wave" viewBox="0 0 800 650" fill="none" preserveAspectRatio="none">
           <path d="M260,0 C420,70 540,160 490,320 C430,500 240,490 280,650 L800,650 L800,0 Z" fill="var(--brand-orange)"/>
         </svg>
       </div>
 
       <div class="content-wrap hero-grid">
-        <!-- Hero Left: Typography & Copy -->
         <div class="hero-content">
           <h1 class="hero-title">
             <span class="title-line-1">TROPICAL</span>
@@ -85,9 +80,7 @@
           </div>
         </div>
 
-        <!-- Hero Right: Dynamic Pet Cutout + Delivery Badge -->
         <div class="hero-visual">
-          <!-- Stamp / Badge "Entrega Rápida em SBC" -->
           <div class="badge-delivery" aria-label="Entrega rápida em São Bernardo do Campo">
             <div class="badge-star" aria-hidden="true">★</div>
             <span class="badge-line badge-accent">ENTREGA</span>
@@ -95,7 +88,6 @@
             <span class="badge-line badge-sub">EM SBC</span>
           </div>
 
-          <!-- Hero Pet Image -->
           <div class="hero-pet-wrapper">
             <picture>
               <source srcset="site/assets/hero-dog-1600.webp" media="(min-width: 768px)">
@@ -106,8 +98,74 @@
       </div>
     </section>
 
-    <!-- 02. Serviços Section (to be styled next) -->
-    <section id="servicos" class="section-full section-services"></section>
+    <!-- 02. Serviços Section -->
+    <section id="servicos" class="section-full section-services">
+      <div class="content-wrap">
+        <div class="section-header">
+          <h2 class="section-title">NOSSOS SERVIÇOS DEDICADOS</h2>
+          <p class="section-subtitle">Tudo o que seu companheiro precisa em um só lugar, com o respeito e amor que ele merece.</p>
+        </div>
+
+        <div class="services-grid">
+          <!-- Card 1: Veterinária -->
+          <article class="service-card">
+            <div class="service-image-box">
+              <picture>
+                <source srcset="site/assets/service-vet-1600.webp" media="(min-width: 768px)">
+                <img src="site/assets/service-vet-800.webp" alt="Dra. Vânia atendendo cachorro com carinho" class="service-img" width="800" height="800" loading="lazy">
+              </picture>
+            </div>
+            <div class="service-body">
+              <h3 class="service-title">VETERINÁRIA COM AMOR</h3>
+              <p class="service-text">
+                Atendimento humanizado com a Dra. Vânia (28 anos de experiência). Consultas com hora marcada, vacinas V4/V10 e antirrábica sem complicação.
+              </p>
+              <a href="https://wa.me/5511960365965?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20uma%20consulta%20veterin%C3%A1ria" target="_blank" rel="noopener noreferrer" class="service-link">
+                Agendar Consulta →
+              </a>
+            </div>
+          </article>
+
+          <!-- Card 2: Banho e Tosa -->
+          <article class="service-card">
+            <div class="service-image-box">
+              <picture>
+                <source srcset="site/assets/service-grooming-1600.webp" media="(min-width: 768px)">
+                <img src="site/assets/service-grooming-800.webp" alt="Cachorro Golden Retriever tomando banho com espuma cheirosa" class="service-img" width="800" height="800" loading="lazy">
+              </picture>
+            </div>
+            <div class="service-body">
+              <h3 class="service-title">BANHO &amp; TOSA CHEIROSO</h3>
+              <p class="service-text">
+                Banhistas atenciosas e dedicadas. Higienização completa, tosa da raça e na tesoura, hidratação profunda e acessórios exclusivos para seu pet sair perfumado.
+              </p>
+              <a href="https://wa.me/5511960365965?text=Ol%C3%A1!%20Gostaria%20de%20agendar%20um%20banho%20e%20tosa" target="_blank" rel="noopener noreferrer" class="service-link">
+                Reservar Horário →
+              </a>
+            </div>
+          </article>
+
+          <!-- Card 3: Farmácia Pet -->
+          <article class="service-card">
+            <div class="service-image-box">
+              <picture>
+                <source srcset="site/assets/service-pharmacy-1600.webp" media="(min-width: 768px)">
+                <img src="site/assets/service-pharmacy-800.webp" alt="Gato ruivo ao lado de medicamentos e suplementos pet" class="service-img" width="800" height="800" loading="lazy">
+              </picture>
+            </div>
+            <div class="service-body">
+              <h3 class="service-title">SUPER FARMÁCIA PET</h3>
+              <p class="service-text">
+                Linha completa de medicamentos, antiparasitários, calmantes naturais (Anizen, Feliway) e suplementos vitamínicos com pronta entrega em São Bernardo.
+              </p>
+              <a href="https://wa.me/5511960365965?text=Ol%C3%A1!%20Gostaria%20de%20consultar%20um%20medicamento%20pet" target="_blank" rel="noopener noreferrer" class="service-link">
+                Consultar Remédio →
+              </a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
 
     <!-- 03. Produtos Section (to be styled next) -->
     <section id="produtos" class="section-full section-products"></section>
