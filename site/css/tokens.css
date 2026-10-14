@@ -1,0 +1,68 @@
+/* tokens.css — Design Tokens derived from DESIGN.md */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..700;1,9..40,400..700&family=Plus+Jakarta+Sans:ital,wght@0,400..800;1,400..800&display=swap');
+
+:root {
+  /* Colors */
+  --bg-base: #fdfaf3;
+  --bg-surface: #ffffff;
+  --bg-surface-subtle: #fbf6ee;
+  
+  --text-primary: #2a180e;
+  --text-secondary: #685950;
+  --text-muted: #8b7d75;
+  --text-inverse: #ffffff;
+  --text-orange-accessible: #c84c00; /* WCAG AA 4.71:1 */
+
+  --brand-orange: #ff6600;
+  --brand-orange-hover: #e55c00;
+  --brand-orange-active: #cc5200;
+  --brand-orange-light: #fff0e5;
+  --brand-peach: #ffd4b4;
+  --brand-peach-soft: #ffe7d6;
+  --brand-dark: #301c11;
+  --brand-gold: #d89b5e;
+  --star-gold: #ffa41b;
+
+  --btn-cta-bg: #e65700; /* WCAG AA Large 3.67:1 com texto branco */
+  --btn-cta-hover: #cf4e00;
+
+  /* Typography */
+  --font-display: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-body: 'DM Sans', system-ui, -apple-system, sans-serif;
+
+  /* Font sizes (Fluid clamp) */
+  --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.85rem);
+  --text-sm: clamp(0.85rem, 0.8rem + 0.35vw, 0.95rem);
+  --text-base: clamp(1rem, 0.95rem + 0.3vw, 1.125rem);
+  --text-lg: clamp(1.125rem, 1.05rem + 0.4vw, 1.35rem);
+  --text-xl: clamp(1.35rem, 1.2rem + 0.75vw, 1.75rem);
+  --text-2xl: clamp(1.75rem, 1.5rem + 1.2vw, 2.35rem);
+  --text-3xl: clamp(2.25rem, 1.8rem + 2vw, 3.25rem);
+  --text-hero: clamp(2.6rem, 1.9rem + 3.5vw, 5.5rem);
+
+  /* Spacing (Fluid clamp) */
+  --space-2xs: clamp(0.2rem, 0.3vw, 0.35rem);
+  --space-xs: clamp(0.35rem, 0.6vw, 0.65rem);
+  --space-sm: clamp(0.75rem, 1.2vw, 1rem);
+  --space-md: clamp(1.25rem, 2vw, 1.75rem);
+  --space-lg: clamp(2rem, 3.5vw, 3rem);
+  --space-xl: clamp(3rem, 5vw, 4.5rem);
+  --space-2xl: clamp(4.5rem, 8vw, 7rem);
+
+  /* Borders & Shadows */
+  --radius-sm: 0.5rem;
+  --radius-md: 1rem;
+  --radius-lg: 1.5rem;
+  --radius-xl: 2rem;
+  --radius-pill: 9999px;
+
+  --shadow-subtle: 0 4px 15px rgba(42, 24, 14, 0.04);
+  --shadow-card: 0 12px 28px -6px rgba(42, 24, 14, 0.06), 0 4px 10px -2px rgba(42, 24, 14, 0.02);
+  --shadow-card-hover: 0 20px 38px -8px rgba(42, 24, 14, 0.1), 0 8px 16px -4px rgba(42, 24, 14, 0.04);
+  --shadow-orange: 0 12px 28px -4px rgba(230, 87, 0, 0.35);
+  --shadow-badge: 0 8px 24px rgba(48, 28, 17, 0.28);
+
+  /* Section Width Constraints for Reading/Content */
+  --content-max-w: 1280px;
+  --text-reading-w: 68ch;
+}
