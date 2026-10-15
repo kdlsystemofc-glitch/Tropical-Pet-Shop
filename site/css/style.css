@@ -87,12 +87,15 @@ body {
 
 .brand-logo {
   display: inline-flex;
-  align-items: baseline;
+  align-items: center;
+  min-height: 44px;
+  min-width: 44px;
   gap: 0.25rem;
   text-decoration: none;
   font-family: var(--font-display);
   font-weight: 900;
   line-height: 1;
+  touch-action: manipulation;
 }
 
 .logo-primary {
@@ -139,6 +142,12 @@ body {
   font-weight: 600;
   color: #2C1810;
   text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding-block: 0.6rem;
+  padding-inline: 0.5rem;
+  touch-action: manipulation;
   transition: color 0.2s ease;
 }
 
@@ -150,15 +159,18 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  min-height: 44px;
+  min-width: 44px;
   background-color: #FF6000;
   color: #FFFFFF;
   font-family: var(--font-display);
   font-size: 0.84rem;
   font-weight: 800;
-  padding: 0.55rem 1.4rem;
+  padding: 0.65rem 1.4rem;
   border-radius: 9999px;
   text-decoration: none;
   box-shadow: 0 4px 14px rgba(255, 96, 0, 0.32);
+  touch-action: manipulation;
   transition: transform 0.2s ease, background-color 0.2s ease;
 }
 
@@ -175,6 +187,7 @@ body {
   z-index: 2;
   padding-top: clamp(1rem, 2vw, 2.5rem);
   padding-bottom: clamp(2rem, 3.5vw, 3.5rem);
+  overflow: hidden;
 }
 
 .hero-wrap {
@@ -242,23 +255,28 @@ body {
   min-height: clamp(340px, 36vw, 490px);
 }
 
-/* O blob laranja orgânico fiel ao mockup */
-.hero-blob-bg {
+/* O blob laranja orgânico fiel ao mockup — Full-Bleed na Lateral Direita */
+.hero-blob-wrapper {
   position: absolute;
-  right: -12vw;
+  right: -8vw;
   top: 50%;
   transform: translateY(-50%);
-  width: clamp(480px, 52vw, 760px);
-  max-width: none;
+  width: clamp(480px, 48vw, 850px);
   pointer-events: none;
   z-index: 1;
 }
 
 @media (max-width: 860px) {
-  .hero-blob-bg {
+  .hero-blob-wrapper {
     right: -25vw;
     width: 140vw;
   }
+}
+
+.hero-blob-bg {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
 }
 
 /* Selo Flutuante "ENTREGA RÁPIDA EM SBC" */
@@ -550,6 +568,9 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  min-height: 44px;
+  min-width: 44px;
+  touch-action: manipulation;
   background: #FF6000;
   color: #FFFFFF;
   font-family: var(--font-display);
@@ -633,6 +654,9 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  min-height: 44px;
+  min-width: 44px;
+  touch-action: manipulation;
   background: #FF6000;
   color: #FFFFFF;
   font-family: var(--font-display);
@@ -897,6 +921,9 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  min-height: 48px;
+  min-width: 44px;
+  touch-action: manipulation;
   background: linear-gradient(180deg, #FF6600 0%, #FF5000 100%);
   color: #FFFFFF;
   font-family: var(--font-display);

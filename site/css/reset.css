@@ -9,11 +9,13 @@ html {
   -webkit-text-size-adjust: 100%;
   scroll-behavior: smooth;
   font-size: 16px;
+  color-scheme: light;
   background-color: var(--bg-base);
 }
 
 body {
   min-height: 100vh;
+  min-height: 100svh;
   font-family: var(--font-body);
   color: var(--text-secondary);
   background-color: var(--bg-base);
