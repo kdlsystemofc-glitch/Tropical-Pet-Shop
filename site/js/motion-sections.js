@@ -134,13 +134,93 @@
     console.log('[Motion] Seção 01: Hero inicializada com sucesso.');
   }
 
+  // --------------------------------------------------------------------------
+  // 02. Serviços Section (#servicos)
+  // --------------------------------------------------------------------------
+  function initSectionServices() {
+    const services = document.getElementById('servicos');
+    if (!services || typeof gsap === 'undefined') return;
+
+    const M = window.TropicalMotion || { mode: 'full', quality: 'high' };
+    const title = services.querySelector('.section-title');
+    const cards = services.querySelectorAll('.service-pill-card');
+
+    if (M.mode === 'reduced') {
+      gsap.set([title, ...cards], { opacity: 1, y: 0, clearProps: 'all' });
+      return;
+    }
+
+    if (typeof ScrollTrigger === 'undefined') {
+      gsap.from([title, ...cards], { opacity: 0, y: 25, duration: 0.6, stagger: 0.1, clearProps: 'all' });
+      return;
+    }
+
+    // Timeline disparada a 35% de visibilidade (start: 'top 65%')
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: services,
+        start: 'top 65%',
+        toggleActions: 'play none none none',
+        once: true
+      },
+      defaults: { ease: 'power2.out' }
+    });
+
+    if (title) {
+      tl.from(title, {
+        y: 25,
+        opacity: 0,
+        duration: 0.65,
+        clearProps: 'transform,opacity'
+      }, 0);
+    }
+
+    if (cards.length > 0) {
+      tl.from(cards, {
+        y: 40,
+        opacity: 0,
+        duration: 0.75,
+        stagger: 0.14,
+        clearProps: 'transform,opacity'
+      }, 0.15);
+    }
+
+    // Parallax suave entre os 3 cards (somente em Quality HIGH e desktop)
+    if (M.quality === 'high' && M.mode === 'full' && cards.length === 3 && window.innerWidth >= 820) {
+      gsap.to(cards[1], {
+        y: -12,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: services,
+          start: 'top 70%',
+          end: 'bottom 20%',
+          scrub: 1
+        }
+      });
+      gsap.to([cards[0], cards[2]], {
+        y: 8,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: services,
+          start: 'top 70%',
+          end: 'bottom 20%',
+          scrub: 1
+        }
+      });
+    }
+
+    console.log('[Motion] Seção 02: Serviços inicializada com sucesso.');
+  }
+
   // Inicializar quando o DOM e Motion Core estiverem prontos
   function init() {
     initSectionHero();
+    initSectionServices();
   }
 
   window.TropicalSectionsMotion = {
     initHero: initSectionHero,
+    initServices: initSectionServices,
     init: init
   };
 
