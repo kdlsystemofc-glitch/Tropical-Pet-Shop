@@ -1,0 +1,97 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Configuração Central de Dados do Cliente — Tropical Pet Shop",
+  "description": "Arquivo único de consolidação de dados comerciais, legais, técnicos e de SEO. Preencha os campos vazios quando os dados reais forem fornecidos pelo cliente e execute 'python scripts/rebuild_client_data.py' para reconstruir as tags, schema.org e links do site.",
+  "status": "aguardando_dados_finais_do_cliente",
+  "lastUpdated": "2026-10-15",
+
+  "dominio": {
+    "url": "",
+    "sugerido": "https://www.tropicalpetshop.com.br",
+    "instrucoes": "Quando o domínio for registrado e apontado no servidor de DNS, preencha 'url' com o endereço completo (incluindo https:// e sem barra final). Isso ativará automaticamente: canonical, og:url, og:image absoluta e link no sitemap.xml."
+  },
+
+  "identificacao_legal": {
+    "razaoSocial": "",
+    "nomeFantasia": "Tropical Pet Shop",
+    "marcaRegistrada": "Tropical Pet",
+    "cnpj": "",
+    "anoFundacao": 1998,
+    "tempoTradicaoAnos": 28,
+    "instrucoes": "O CNPJ e a Razão Social formal devem ser preenchidos para exibição no rodapé legal, garantindo conformidade com o Decreto Federal nº 7.962/2013 (Lei do E-commerce) e Código de Defesa do Consumidor."
+  },
+
+  "responsavel_tecnica_veterinaria": {
+    "nome": "Dra. Vânia",
+    "sobrenome": "",
+    "crmv": "",
+    "uf": "SP",
+    "especialidade": "Clínica Geral & Cuidados Preventivos",
+    "tempoExperiencia": "28 anos",
+    "instrucoes": "O registro no CRMV-SP (ex: CRMV-SP 12345) é requisito regulatório ético do Conselho de Medicina Veterinária para publicidade e exibição no site institucional e no Schema.org VeterinaryCare."
+  },
+
+  "horarios_funcionamento": {
+    "loja_e_delivery": {
+      "segunda_a_sexta": "08:00 às 18:00",
+      "sabado": "08:00 às 17:00",
+      "domingo_e_feriados": "Fechado"
+    },
+    "clinica_veterinaria": {
+      "segunda_a_sexta": "09:00 às 17:00",
+      "sabado": "09:00 às 13:00",
+      "domingo_e_feriados": "Fechado",
+      "tipoAtendimento": "Por ordem de chegada e agendamento prévio via WhatsApp"
+    },
+    "banho_e_tosa": {
+      "segunda_a_sabado": "08:30 às 17:00",
+      "domingo_e_feriados": "Fechado",
+      "observacao": "Agendamento prévio necessário com busca e entrega (leva e traz)"
+    },
+    "instrucoes": "Confirmar a grade exata de horários com o proprietário para atualização no rodapé, na seção de serviços e na especificação 'openingHoursSpecification' do Schema.org."
+  },
+
+  "canais_atendimento": {
+    "telefone_whatsapp": "+55-11-96036-5965",
+    "telefone_whatsapp_formatado": "(11) 96036-5965",
+    "instagram_url": "https://www.instagram.com/tropicalpetshop",
+    "instagram_handle": "@tropicalpetshop",
+    "google_maps_place_url": "https://maps.google.com/?q=Tropical+Pet+Shop+Rua+Espanha+415+Sao+Bernardo+do+Campo",
+    "google_place_id": "",
+    "instrucoes": "Inserir o link oficial direto de 'Avaliar no Google' gerado no Google Meu Negócio / Perfil da Empresa para facilitar novas avaliações."
+  },
+
+  "localizacao": {
+    "logradouro": "Rua Espanha",
+    "numero": "415",
+    "complemento": "",
+    "bairro": "Vila Santa Luzia",
+    "cidade": "São Bernardo do Campo",
+    "estado": "SP",
+    "cep": "09671-050",
+    "pais": "BR",
+    "coordenadas": {
+      "latitude": -23.67057,
+      "longitude": -46.56492
+    },
+    "plusCode": "89MV+X3 Vila Santa Luzia, São Bernardo do Campo - SP"
+  },
+
+  "politica_precos": {
+    "priceRange": "$$",
+    "faixas_confirmadas": false,
+    "consulta_clinica": "Sob consulta via WhatsApp",
+    "banho_e_tosa": "Valores sob consulta de acordo com o porte e pelagem do pet",
+    "delivery": "Consulte taxa de entrega para o seu bairro em SBC",
+    "instrucoes": "Definir se deseja manter a política comercial sob consulta no WhatsApp (estratégia atual de alta conversão) ou se deseja tabela pública de preços de serviços."
+  },
+
+  "fotos_substituicao_opcional": {
+    "descricao": "O site atualmente utiliza fotos reais do acervo (produtos, loja e Dra. Vânia) e plates otimizados de alta fidelidade visual. Caso o cliente queira substituir por fotos autorais adicionais em alta resolução:",
+    "slots": {
+      "equipe_banho_tosa": "Foto das banhistas com ambiente bem iluminado (proporção 4:3)",
+      "fachada_loja": "Foto da fachada externa na Rua Espanha (proporção 16:9)",
+      "consultorio_dra_vania": "Foto recente da Dra. Vânia no consultório (proporção 4:3)"
+    }
+  }
+}
