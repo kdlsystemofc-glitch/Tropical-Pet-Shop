@@ -3,7 +3,9 @@
 
 :root {
   /* Colors */
-  --bg-base: #fdfaf3;
+  --bg-base: #faf6f0;
+  --bg-peach-section: #feebde;
+  --bg-produtos-section: #ffffff;
   --bg-surface: #ffffff;
   --bg-surface-subtle: #fbf6ee;
   
