@@ -1,28 +1,18 @@
-# PROGRESSO.md — Tropical Pet Shop
+## Status Atual: FASE A — Base Global de Motion Concluída (Tag: motion-base)
 
-## Status Atual: Etapa de Análise Concluída
-
-### Concluído nesta etapa:
-- [x] Leitura e síntese factual de `CLIENTE.MD` e auditoria de todas as 15 imagens reais de `imagens/`.
-- [x] Análise aprofundada do mockup em `design/mockup-full.png.jpg` e criação de cópia de segurança em `design/mockup-full.png`.
-- [x] Fatiamento do mockup por blocos de conteúdo limpos em `design/secoes/`:
-  - `01-hero.png` (y: 0 a 330)
-  - `02-servicos.png` (y: 330 a 575)
-  - `03-produtos.png` (y: 575 a 895)
-  - `04-avaliacoes.png` (y: 895 a 1190)
-  - `05-cta-footer.png` (y: 1190 a 1376)
-- [x] Criação do documento mestre `DESIGN.md`:
-  - Auditoria Mockup vs. Realidade (eliminação de placeholders e fotos falsas).
-  - Identificação da onda tropical orgânica e viabilidade técnica (SVG inline responsivo modular por seção).
-  - Amostragem óptica de cores em HEX e auditoria de contraste WCAG 2.1 com correções aprovadas.
-  - Seleção tipográfica justificadas com Google Fonts (`Plus Jakarta Sans`, `DM Sans`, `Outfit`).
-  - Tabela de camadas por seção (CSS / SVG / Foto Real / Plate).
-  - Especificação de motion e animações leves aceleradas por GPU.
-  - Plano minucioso de imagens: slots, prompts prontos para plate e prompts de ajuste/recorte para fotos reais do cliente.
-  - 4 perguntas estratégicas de negócio.
-  - Checklist de pendências do cliente e mensagem pronta para WhatsApp.
+### Concluído:
+- [x] Construção do layout semântico e passada responsiva geral nas 12 resoluções oficiais (Commit `responsivo pronto`).
+- [x] Auditoria inicial Lighthouse e criação do `motion-baseline.md` (Mobile Perf: 37, A11y: 100, BP: 96, SEO: 100).
+- [x] Instalação e auto-hospedagem local dos scripts clássicos em `site/js/vendor/` (`gsap.min.js`, `ScrollTrigger.min.js`, `lenis.min.js`).
+- [x] Criação do núcleo de motion em `site/js/motion-core.js`:
+  - 3 modos de motion: `full`, `reduced` (respeitando `prefers-reduced-motion`) e `paused` (freeze/resume com Page Visibility API).
+  - Detecção de qualidade de hardware (`high` / `low` via `hardwareConcurrency`, `deviceMemory`, `saveData` e largura de tela).
+  - Suporte desacoplado para Lenis smooth scroll sincronizado com GSAP Ticker.
+  - Framework declarativo para `data-reveal`, `data-parallax` e `data-loop` com auto-pausa de loops fora da tela (`IntersectionObserver`).
+  - Nenhuma seção animada ainda na Fase A (tudo 100% visível estaticamente acima e abaixo da dobra).
+- [x] Regressão completa de testes Playwright aprovada em 12/12 viewports (0 erros no console, 0 rolagem horizontal, 0 quebras).
 
 ### Próximos Passos:
-- [ ] Aguardar retorno do usuário sobre as 4 perguntas e aprovação do plano de imagens.
-- [ ] Tratamento/higienização das fotos reais em `site/assets/` conforme os prompts aprovados.
-- [ ] Estruturação do HTML semântico mobile-first e CSS de design tokens.
+- [ ] **FASE B**: Animar cada seção em ordem (`#hero`, `#servicos`, `#produtos`, `#avaliacoes`, `#cta-footer`), medindo impacto, empilhamento e Lighthouse a cada passo.
+- [ ] **FASE C**: Menu, rodapé, botão flutuante de pausa acessível e inventário final de loops (`motion-inventario.md`).
+
