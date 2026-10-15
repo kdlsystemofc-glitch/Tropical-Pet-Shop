@@ -33,3 +33,44 @@ Este documento mapeia cada slot de imagem do `DESIGN.md` para arquivos processad
 ## 2. Slots sem arquivo & Solução de Fallback
 - **Todos os slots foram 100% preenchidos.**
 - Para os slots onde há duplicidade entre **Plate Gerado** (que replica pixel a pixel a estética do mockup) e **Foto Real** (documental da clínica e loja), ambos os conjuntos de arquivos foram convertidos e estão disponíveis em `site/assets/`. O site utilizará os plates do mockup para atingir fidelidade estética máxima e manterá as fotos reais catalogadas para fácil chaveamento conforme alinhamento com o cliente.
+
+---
+
+## 3. Variantes Responsivas Otimizadas (Etapa de Otimização)
+
+Para garantir pontuação Lighthouse Mobile acima de 90 (atingido 93/100) com FCP de 1.1s e LCP de 3.2s, foram geradas variantes otimizadas com degraus sob medida para dispositivos móveis de alta densidade de pixels (DPR 1.5x a 3x):
+
+- **Hero Dog (LCP Candidate)**:
+  - `site/assets/hero-dog-400.webp` (400x500, ~31.3 KiB) — Telas móveis compactas
+  - `site/assets/hero-dog-600.webp` (600x750, ~59.3 KiB) — Mobile padrão / DPR 2x
+  - `site/assets/hero-dog-720.webp` (720x900, ~82.0 KiB) — Mobile high-DPR (2.6x–3x)
+  - `site/assets/hero-dog.webp` (1122x1403, ~308 KiB) — Desktop Retina
+
+- **Hero Orange Blob**:
+  - `site/assets/hero-orange-blob-480.webp` (480x270, ~10.6 KiB)
+  - `site/assets/hero-orange-blob-800.webp` (800x450, ~19.9 KiB)
+  - `site/assets/hero-orange-blob.webp` (1448x1086, ~86.3 KiB)
+
+- **Serviços (Veterinária, Banho e Tosa, Farmácia)**:
+  - `service-*-360.webp` (360x360, ~10–15 KiB)
+  - `service-*-600.webp` (600x600, ~20–30 KiB)
+  - `service-*-800.webp` (800x800, ~30–45 KiB)
+  - `service-*.webp` (1254x1254, ~130–150 KiB)
+
+- **Vitrine de Produtos (Showcase)**:
+  - `products-showcase-360.webp` (360x120, ~9.2 KiB)
+  - `products-showcase-680.webp` (680x227, ~24.3 KiB)
+  - `products-showcase-1000.webp` (1000x333, ~42.7 KiB)
+  - `products-showcase.webp` (2172x724, ~352 KiB)
+
+- **Mini Produtos (Biscoitos, Snacks, Kong, Dental)**:
+  - `product-*-160.webp` (160x160, ~3.6–5.0 KiB)
+  - `product-*-240.webp` (240x240, ~6.4–9.1 KiB)
+  - `product-*-300.webp` (300x300, ~8.7–12.3 KiB)
+  - `product-*.webp` (420x420, ~36–50 KiB)
+
+- **Avaliações (Fotos dos Pets & Blob)**:
+  - `review-golden-280.webp` (280x280, ~8.0 KiB)
+  - `review-labrador-280.webp` (280x280, ~12.0 KiB)
+  - `reviews-orange-blob-600.webp` (600x450, ~26.7 KiB)
+
