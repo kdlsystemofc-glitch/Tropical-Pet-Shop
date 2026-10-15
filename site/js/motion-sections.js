@@ -336,17 +336,167 @@
     console.log('[Motion] Seção 03: Produtos inicializada com sucesso.');
   }
 
+  // --------------------------------------------------------------------------
+  // 04. Avaliações Section (#avaliacoes)
+  // --------------------------------------------------------------------------
+  function initSectionReviews() {
+    const reviews = document.getElementById('avaliacoes');
+    if (!reviews || typeof gsap === 'undefined') return;
+
+    const M = window.TropicalMotion || { mode: 'full', quality: 'high' };
+    const title = reviews.querySelector('.reviews-main-title');
+    const bubbles = reviews.querySelectorAll('.speech-bubble-mock');
+    const goldenPhoto = reviews.querySelector('.pet-photo-frame-center');
+    const labradorPolaroid = reviews.querySelector('.polaroid-inner');
+
+    if (M.mode === 'reduced') {
+      gsap.set([title, ...bubbles, goldenPhoto, labradorPolaroid], {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        clearProps: 'all'
+      });
+      return;
+    }
+
+    if (typeof ScrollTrigger === 'undefined') {
+      gsap.from([title, ...bubbles, goldenPhoto, labradorPolaroid], {
+        opacity: 0,
+        y: 20,
+        duration: 0.6,
+        stagger: 0.08,
+        clearProps: 'all'
+      });
+      return;
+    }
+
+    // Timeline disparada a 35% de visibilidade (start: 'top 65%')
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: reviews,
+        start: 'top 65%',
+        toggleActions: 'play none none none',
+        once: true
+      },
+      defaults: { ease: 'power2.out' }
+    });
+
+    if (title) {
+      tl.from(title, {
+        y: 25,
+        opacity: 0,
+        duration: 0.65,
+        clearProps: 'transform,opacity'
+      }, 0);
+    }
+
+    if (bubbles.length > 0) {
+      tl.from(bubbles, {
+        scale: 0.88,
+        y: 22,
+        opacity: 0,
+        duration: 0.65,
+        stagger: 0.08,
+        ease: 'back.out(1.15)',
+        clearProps: 'transform,opacity'
+      }, 0.15);
+    }
+
+    if (goldenPhoto) {
+      tl.from(goldenPhoto, {
+        scale: 0.82,
+        opacity: 0,
+        duration: 0.7,
+        ease: 'back.out(1.25)',
+        clearProps: 'transform,opacity'
+      }, 0.3);
+    }
+
+    if (labradorPolaroid) {
+      tl.from(labradorPolaroid, {
+        scale: 0.8,
+        rotation: -12,
+        opacity: 0,
+        duration: 0.75,
+        ease: 'back.out(1.3)',
+        clearProps: 'opacity'
+      }, 0.4);
+    }
+
+    // Micro-flutuação e balanço nos retratos dos pets (quality HIGH)
+    if (M.quality === 'high' && M.mode === 'full') {
+      if (goldenPhoto) {
+        const goldenFloat = gsap.to(goldenPhoto, {
+          y: -5,
+          duration: 3.0,
+          ease: 'sine.inOut',
+          yoyo: true,
+          repeat: -1,
+          paused: false
+        });
+        goldenPhoto._motionLoopTween = goldenFloat;
+        if (M.registerLoop) M.registerLoop(goldenPhoto, { type: 'float' });
+      }
+
+      if (labradorPolaroid) {
+        const polaroidSway = gsap.to(labradorPolaroid, {
+          rotation: -2.5,
+          y: -4,
+          duration: 3.6,
+          ease: 'sine.inOut',
+          yoyo: true,
+          repeat: -1,
+          paused: false
+        });
+        labradorPolaroid._motionLoopTween = polaroidSway;
+        if (M.registerLoop) M.registerLoop(labradorPolaroid, { type: 'sway' });
+      }
+    }
+
+    // Parallax suave entre os balões de fala superiores e inferiores (desktop)
+    if (M.quality === 'high' && M.mode === 'full' && bubbles.length >= 6 && window.innerWidth >= 860) {
+      const topBubbles = [bubbles[0], bubbles[1], bubbles[2]];
+      const bottomBubbles = [bubbles[3], bubbles[4], bubbles[5]];
+
+      gsap.to(topBubbles, {
+        y: -10,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: reviews,
+          start: 'top 70%',
+          end: 'bottom 20%',
+          scrub: 1
+        }
+      });
+
+      gsap.to(bottomBubbles, {
+        y: 10,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: reviews,
+          start: 'top 70%',
+          end: 'bottom 20%',
+          scrub: 1
+        }
+      });
+    }
+
+    console.log('[Motion] Seção 04: Avaliações inicializada com sucesso.');
+  }
+
   // Inicializar quando o DOM e Motion Core estiverem prontos
   function init() {
     initSectionHero();
     initSectionServices();
     initSectionProducts();
+    initSectionReviews();
   }
 
   window.TropicalSectionsMotion = {
     initHero: initSectionHero,
     initServices: initSectionServices,
     initProducts: initSectionProducts,
+    initReviews: initSectionReviews,
     init: init
   };
 
