@@ -212,15 +212,141 @@
     console.log('[Motion] Seção 02: Serviços inicializada com sucesso.');
   }
 
+  // --------------------------------------------------------------------------
+  // 03. Super Mercado Pet Section (#produtos)
+  // --------------------------------------------------------------------------
+  function initSectionProducts() {
+    const products = document.getElementById('produtos');
+    if (!products || typeof gsap === 'undefined') return;
+
+    const M = window.TropicalMotion || { mode: 'full', quality: 'high' };
+    const title = products.querySelector('.section-title');
+    const showcaseMedia = products.querySelector('.showcase-media-side');
+    const showcaseContent = products.querySelector('.showcase-content-side');
+    const miniCards = products.querySelectorAll('.product-mini-column');
+
+    if (M.mode === 'reduced') {
+      gsap.set([title, showcaseMedia, showcaseContent, ...miniCards], {
+        opacity: 1,
+        x: 0,
+        y: 0,
+        clearProps: 'all'
+      });
+      return;
+    }
+
+    if (typeof ScrollTrigger === 'undefined') {
+      gsap.from([title, showcaseMedia, showcaseContent, ...miniCards], {
+        opacity: 0,
+        y: 25,
+        duration: 0.6,
+        stagger: 0.08,
+        clearProps: 'all'
+      });
+      return;
+    }
+
+    // Timeline disparada a 35% de visibilidade (start: 'top 65%')
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: products,
+        start: 'top 65%',
+        toggleActions: 'play none none none',
+        once: true
+      },
+      defaults: { ease: 'power2.out' }
+    });
+
+    if (title) {
+      tl.from(title, {
+        y: 25,
+        opacity: 0,
+        duration: 0.65,
+        clearProps: 'transform,opacity'
+      }, 0);
+    }
+
+    if (showcaseMedia) {
+      tl.from(showcaseMedia, {
+        x: -30,
+        opacity: 0,
+        duration: 0.75,
+        clearProps: 'transform,opacity'
+      }, 0.12);
+    }
+
+    if (showcaseContent) {
+      tl.from(showcaseContent, {
+        x: 25,
+        opacity: 0,
+        duration: 0.75,
+        clearProps: 'transform,opacity'
+      }, 0.2);
+    }
+
+    if (miniCards.length > 0) {
+      tl.from(miniCards, {
+        y: 35,
+        opacity: 0,
+        duration: 0.65,
+        stagger: 0.1,
+        clearProps: 'transform,opacity'
+      }, 0.35);
+    }
+
+    // Micro-flutuação no showcase principal de rações (quality HIGH)
+    const showcaseImg = products.querySelector('.showcase-hero-img');
+    if (showcaseImg && M.quality === 'high' && M.mode === 'full') {
+      const showcaseFloat = gsap.to(showcaseImg, {
+        y: -5,
+        duration: 3.2,
+        ease: 'sine.inOut',
+        yoyo: true,
+        repeat: -1,
+        paused: false
+      });
+      showcaseImg._motionLoopTween = showcaseFloat;
+      if (M.registerLoop) M.registerLoop(showcaseImg, { type: 'float' });
+    }
+
+    // Parallax suave entre os 4 mini produtos (quality HIGH e desktop)
+    if (M.quality === 'high' && M.mode === 'full' && miniCards.length === 4 && window.innerWidth >= 768) {
+      gsap.to([miniCards[0], miniCards[2]], {
+        y: -8,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: products,
+          start: 'top 60%',
+          end: 'bottom 15%',
+          scrub: 1
+        }
+      });
+      gsap.to([miniCards[1], miniCards[3]], {
+        y: 8,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: products,
+          start: 'top 60%',
+          end: 'bottom 15%',
+          scrub: 1
+        }
+      });
+    }
+
+    console.log('[Motion] Seção 03: Produtos inicializada com sucesso.');
+  }
+
   // Inicializar quando o DOM e Motion Core estiverem prontos
   function init() {
     initSectionHero();
     initSectionServices();
+    initSectionProducts();
   }
 
   window.TropicalSectionsMotion = {
     initHero: initSectionHero,
     initServices: initSectionServices,
+    initProducts: initSectionProducts,
     init: init
   };
 
