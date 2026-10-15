@@ -189,6 +189,36 @@
       }
     });
 
+    // Vincular Botão Acessível de Pausa na UI
+    const toggleBtn = document.getElementById('motion-toggle-btn');
+    if (toggleBtn) {
+      toggleBtn.addEventListener('click', () => {
+        togglePause();
+        const isPaused = Motion.mode === 'paused';
+        toggleBtn.classList.toggle('is-paused', isPaused);
+        toggleBtn.setAttribute('aria-label', isPaused ? 'Retomar animações da página' : 'Pausar animações da página');
+        const icon = toggleBtn.querySelector('.motion-toggle-icon');
+        if (icon) icon.textContent = isPaused ? '▶' : '⏸';
+      });
+    }
+
+    // Navegação Suave com Lenis para Âncoras do Menu
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        const targetId = this.getAttribute('href');
+        if (!targetId || targetId === '#') return;
+        const targetEl = document.querySelector(targetId);
+        if (targetEl) {
+          e.preventDefault();
+          if (Motion.lenis && Motion.mode === 'full') {
+            Motion.lenis.scrollTo(targetEl, { offset: -20, duration: 1.0 });
+          } else {
+            targetEl.scrollIntoView({ behavior: 'smooth' });
+          }
+        }
+      });
+    });
+
     Motion.isInitialized = true;
     console.log(`[Motion] Núcleo ativo | Modo: ${Motion.mode} | Qualidade: ${Motion.quality}`);
   }

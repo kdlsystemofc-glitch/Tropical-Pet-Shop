@@ -1013,3 +1013,46 @@ body {
   margin: 0 auto;
   line-height: 1.5;
 }
+
+/* --------------------------------------------------------------------------
+   08. Botão Flutuante de Pausa de Motion (Acessibilidade)
+   -------------------------------------------------------------------------- */
+.motion-toggle-btn {
+  position: fixed;
+  bottom: 1.25rem;
+  left: 1.25rem;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  width: 44px;
+  height: 44px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.9);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(44, 24, 16, 0.12);
+  box-shadow: 0 4px 14px rgba(44, 24, 16, 0.12);
+  color: #2C1810;
+  cursor: pointer;
+  touch-action: manipulation;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.motion-toggle-btn:hover {
+  transform: scale(1.08);
+  background: #FFFFFF;
+}
+
+.motion-toggle-btn:focus-visible {
+  outline: 3px solid #FF6000;
+  outline-offset: 3px;
+}
+
+.motion-toggle-icon {
+  font-size: 1rem;
+  line-height: 1;
+}
+

@@ -1,18 +1,25 @@
-## Status Atual: FASE A — Base Global de Motion Concluída (Tag: motion-base)
+## Status Atual: Fases de Motion Concluídas (Tag: motion-pronto)
 
 ### Concluído:
-- [x] Construção do layout semântico e passada responsiva geral nas 12 resoluções oficiais (Commit `responsivo pronto`).
-- [x] Auditoria inicial Lighthouse e criação do `motion-baseline.md` (Mobile Perf: 37, A11y: 100, BP: 96, SEO: 100).
-- [x] Instalação e auto-hospedagem local dos scripts clássicos em `site/js/vendor/` (`gsap.min.js`, `ScrollTrigger.min.js`, `lenis.min.js`).
-- [x] Criação do núcleo de motion em `site/js/motion-core.js`:
-  - 3 modos de motion: `full`, `reduced` (respeitando `prefers-reduced-motion`) e `paused` (freeze/resume com Page Visibility API).
-  - Detecção de qualidade de hardware (`high` / `low` via `hardwareConcurrency`, `deviceMemory`, `saveData` e largura de tela).
-  - Suporte desacoplado para Lenis smooth scroll sincronizado com GSAP Ticker.
-  - Framework declarativo para `data-reveal`, `data-parallax` e `data-loop` com auto-pausa de loops fora da tela (`IntersectionObserver`).
-  - Nenhuma seção animada ainda na Fase A (tudo 100% visível estaticamente acima e abaixo da dobra).
-- [x] Regressão completa de testes Playwright aprovada em 12/12 viewports (0 erros no console, 0 rolagem horizontal, 0 quebras).
+- [x] **FASE A — Base Global de Motion (Tag: `motion-base`)**:
+  - Auditoria inicial Lighthouse e baseline (`motion-baseline.md`).
+  - Instalação e auto-hospedagem de scripts clássicos em `site/js/vendor/` (`gsap.min.js`, `ScrollTrigger.min.js`, `lenis.min.js`).
+  - Núcleo de motion em `site/js/motion-core.js` com 3 modos (`full`, `reduced`, `paused`), detecção de qualidade (`high`, `low`), suporte desacoplado ao Lenis, e ciclo de vida de visibilidade de abas.
+  - Regressão de 12 viewports aprovada (0 erros).
 
-### Próximos Passos:
-- [ ] **FASE B**: Animar cada seção em ordem (`#hero`, `#servicos`, `#produtos`, `#avaliacoes`, `#cta-footer`), medindo impacto, empilhamento e Lighthouse a cada passo.
-- [ ] **FASE C**: Menu, rodapé, botão flutuante de pausa acessível e inventário final de loops (`motion-inventario.md`).
+- [x] **FASE B — Animação Seção por Seção**:
+  - **Seção 01 (Hero)**: Entrada escalonada dos títulos e texto, pouso com leve salto no cão Jack Russell e selo de entrega rápida, loops de flutuação e parallax de rolagem. Commit `motion: secao 01 hero animada`.
+  - **Seção 02 (Serviços)**: Entrada suave dos 3 cards em formato cápsula a 35% de visibilidade com micro-parallax diferencial no desktop. Commit `motion: secao 02 servicos animada`.
+  - **Seção 03 (Produtos)**: Entrada coordenada do showcase de rações super premium e sub-grid dos 4 produtos, com micro-flutuação das embalagens e parallax leve. Commit `motion: secao 03 produtos animada`.
+  - **Seção 04 (Avaliações)**: Entrada em estilo balões de fala, pop-in das fotos do Golden Retriever e Labrador polaroid com rotação, loops contínuos de respiração e balanço suave. Commit `motion: secao 04 avaliacoes animada`.
+  - **Seção 05 (CTA / Rodapé)**: Entrada do título, metadados e botão de WhatsApp com respiração periódica suave para guiar a conversão final. Commit `motion: secao 05 cta-footer animada`.
+  - Lighthouse mobile pós-motion atingiu **Performance 63/100** (superior ao baseline de 37/100 devido a `fetchpriority="high"` e `width`/`height` explícitos), Acessibilidade 100/100, Boas Práticas 100/100, SEO 100/100.
+
+- [x] **FASE C — Menu, Rodapé, Botão de Pausa e Coerência Global (Tag: `motion-pronto`)**:
+  - Implementação de navegação suave com Lenis nos links de âncora do header.
+  - Botão flutuante acessível de pausa de motion no canto inferior (`#motion-toggle-btn`) com suporte a teclado, `aria-label` dinâmico e alternância ⏸ / ▶.
+  - Criação do `motion-inventario.md` com mapeamento detalhado de todos os 29 efeitos e controle de concorrência de loops ($\le 2$ loops simultâneos via `IntersectionObserver`).
+  - Gravação de vídeo de walkthrough completo em `screenshots/video/motion_walkthrough.webm`.
+  - Regressão final de 12 viewports 100% verde (0 rolagem horizontal, 0 alvos pequenos, 0 textos cortados, 0 erros no console).
+
 
