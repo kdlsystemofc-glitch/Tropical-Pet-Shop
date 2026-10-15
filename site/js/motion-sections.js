@@ -484,12 +484,113 @@
     console.log('[Motion] Seção 04: Avaliações inicializada com sucesso.');
   }
 
+  // --------------------------------------------------------------------------
+  // 05. CTA WhatsApp & Rodapé Section (#cta-footer)
+  // --------------------------------------------------------------------------
+  function initSectionFooter() {
+    const footer = document.getElementById('cta-footer');
+    if (!footer || typeof gsap === 'undefined') return;
+
+    const M = window.TropicalMotion || { mode: 'full', quality: 'high' };
+    const heading = footer.querySelector('.footer-heading');
+    const ctaBtn = footer.querySelector('.btn-whatsapp-pill');
+    const metaItems = footer.querySelectorAll('.meta-item');
+    const bottomCopy = footer.querySelector('.footer-bottom-copy');
+
+    if (M.mode === 'reduced') {
+      gsap.set([heading, ctaBtn, ...metaItems, bottomCopy], {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        clearProps: 'all'
+      });
+      return;
+    }
+
+    if (typeof ScrollTrigger === 'undefined') {
+      gsap.from([heading, ctaBtn, ...metaItems, bottomCopy], {
+        opacity: 0,
+        y: 20,
+        duration: 0.6,
+        stagger: 0.1,
+        clearProps: 'all'
+      });
+      return;
+    }
+
+    // Timeline disparada a 35% de visibilidade (start: 'top 75%')
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: footer,
+        start: 'top 75%',
+        toggleActions: 'play none none none',
+        once: true
+      },
+      defaults: { ease: 'power2.out' }
+    });
+
+    if (heading) {
+      tl.from(heading, {
+        y: 24,
+        opacity: 0,
+        duration: 0.65,
+        clearProps: 'transform,opacity'
+      }, 0);
+    }
+
+    if (ctaBtn) {
+      tl.from(ctaBtn, {
+        scale: 0.88,
+        y: 20,
+        opacity: 0,
+        duration: 0.7,
+        ease: 'back.out(1.25)',
+        clearProps: 'transform,opacity'
+      }, 0.15);
+    }
+
+    if (metaItems.length > 0) {
+      tl.from(metaItems, {
+        y: 16,
+        opacity: 0,
+        duration: 0.6,
+        stagger: 0.1,
+        clearProps: 'transform,opacity'
+      }, 0.3);
+    }
+
+    if (bottomCopy) {
+      tl.from(bottomCopy, {
+        opacity: 0,
+        duration: 0.7,
+        clearProps: 'opacity'
+      }, 0.45);
+    }
+
+    // Respiração suave do botão de WhatsApp para guiar a conversão final (quality HIGH)
+    if (ctaBtn && M.quality === 'high' && M.mode === 'full') {
+      const ctaPulse = gsap.to(ctaBtn, {
+        scale: 1.025,
+        duration: 2.4,
+        ease: 'sine.inOut',
+        yoyo: true,
+        repeat: -1,
+        paused: false
+      });
+      ctaBtn._motionLoopTween = ctaPulse;
+      if (M.registerLoop) M.registerLoop(ctaBtn, { type: 'pulse' });
+    }
+
+    console.log('[Motion] Seção 05: CTA WhatsApp & Rodapé inicializada com sucesso.');
+  }
+
   // Inicializar quando o DOM e Motion Core estiverem prontos
   function init() {
     initSectionHero();
     initSectionServices();
     initSectionProducts();
     initSectionReviews();
+    initSectionFooter();
   }
 
   window.TropicalSectionsMotion = {
@@ -497,6 +598,7 @@
     initServices: initSectionServices,
     initProducts: initSectionProducts,
     initReviews: initSectionReviews,
+    initFooter: initSectionFooter,
     init: init
   };
 
