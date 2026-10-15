@@ -36,7 +36,11 @@ def capture(section=None, prev_section=None, viewports=None, prefix=""):
             url = f"http://127.0.0.1:{PORT}/index.html"
             page.goto(url, wait_until='networkidle')
             page.evaluate("document.fonts.ready")
-            time.sleep(0.5) # ensure styles and images render
+            # Scroll through page to trigger lazy loaded images
+            page.evaluate("() => { window.scrollTo(0, document.body.scrollHeight); }")
+            time.sleep(0.5)
+            page.evaluate("() => { window.scrollTo(0, 0); }")
+            time.sleep(0.3)
 
             vp_tag = f"{w}"
             
