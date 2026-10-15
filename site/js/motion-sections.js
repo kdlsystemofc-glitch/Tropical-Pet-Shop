@@ -13,72 +13,123 @@
 
     const M = window.TropicalMotion || { mode: 'full', quality: 'high' };
 
+    const pillBadge = hero.querySelector('.hero-pill-badge');
+    const headingLines = hero.querySelectorAll('.hero-heading span');
+    const pawIcon = hero.querySelector('.hero-paw-icon');
+    const subtext = hero.querySelector('.hero-subtext');
+    const actionsRow = hero.querySelector('.hero-actions-row');
+    const dog = hero.querySelector('.hero-dog-jumping');
+    const badge = hero.querySelector('.badge-delivery');
+    const ambientGlow = hero.querySelector('.hero-ambient-glow');
+    const particles = hero.querySelectorAll('.particle');
+    const blobWrapper = hero.querySelector('.hero-blob-wrapper');
+    const textCol = hero.querySelector('.hero-text-col');
+
     // Se preferência for reduced motion: apenas garantir visibilidade limpa imediata
     if (M.mode === 'reduced') {
-      gsap.set(['#hero .hero-heading span', '#hero .hero-subtext', '#hero .hero-dog-jumping', '#hero .badge-delivery'], {
+      gsap.set([pillBadge, headingLines, subtext, actionsRow, dog, badge, ambientGlow, particles, blobWrapper, textCol], {
         opacity: 1,
+        x: 0,
         y: 0,
         scale: 1,
+        rotate: 0,
         clearProps: 'all'
       });
       return;
     }
 
-    // 1. Entrance Timeline do Hero (dispara logo na carga)
+    // 1. Cinematic Staggered Entrance Timeline
     const tl = gsap.timeline({
-      defaults: { ease: 'power2.out' }
+      defaults: { ease: 'power3.out' }
     });
 
-    const headingLines = hero.querySelectorAll('.hero-heading span');
-    const subtext = hero.querySelector('.hero-subtext');
-    const dog = hero.querySelector('.hero-dog-jumping');
-    const badge = hero.querySelector('.badge-delivery');
+    if (pillBadge) {
+      tl.from(pillBadge, {
+        y: -18,
+        scale: 0.88,
+        opacity: 0,
+        duration: 0.65,
+        ease: 'back.out(1.4)'
+      }, 0.05);
+    }
 
-    // Começar a partir de offsets suaves sem esconder nada permanentemente
-    tl.from(headingLines, {
-      y: 28,
-      opacity: 0,
-      duration: 0.75,
-      stagger: 0.12,
-      clearProps: 'transform,opacity'
-    }, 0.1);
+    if (headingLines.length > 0) {
+      tl.from(headingLines, {
+        y: 42,
+        opacity: 0,
+        duration: 0.85,
+        stagger: 0.12,
+        ease: 'power3.out'
+      }, 0.15);
+    }
 
     if (subtext) {
       tl.from(subtext, {
+        y: 24,
+        opacity: 0,
+        duration: 0.7,
+        ease: 'power2.out'
+      }, 0.38);
+    }
+
+    if (actionsRow) {
+      tl.from(actionsRow, {
         y: 20,
         opacity: 0,
-        duration: 0.65,
-        clearProps: 'transform,opacity'
-      }, 0.35);
+        duration: 0.7,
+        ease: 'power2.out'
+      }, 0.48);
+    }
+
+    if (ambientGlow) {
+      tl.from(ambientGlow, {
+        scale: 0.65,
+        opacity: 0,
+        duration: 1.1,
+        ease: 'power2.out'
+      }, 0.2);
     }
 
     if (dog) {
       tl.from(dog, {
-        y: 42,
-        scale: 0.94,
+        y: 60,
+        scale: 1.12,
+        rotate: -5,
         opacity: 0,
-        duration: 0.85,
-        ease: 'back.out(1.15)',
+        duration: 1.05,
+        ease: 'power3.out',
         clearProps: 'transform,opacity'
-      }, 0.2);
+      }, 0.25);
     }
 
     if (badge) {
       tl.from(badge, {
-        scale: 0.7,
+        scale: 0,
+        rotate: -35,
         opacity: 0,
-        duration: 0.6,
-        ease: 'back.out(1.35)',
+        duration: 0.8,
+        ease: 'back.out(1.6)',
         clearProps: 'transform,opacity'
-      }, 0.45);
+      }, 0.5);
     }
 
-    // 2. Flutuação Contínua (Somente em Quality HIGH e enquanto na tela)
+    if (particles.length > 0) {
+      tl.from(particles, {
+        scale: 0,
+        opacity: 0,
+        stagger: 0.1,
+        duration: 0.6,
+        ease: 'back.out(2.0)'
+      }, 0.6);
+    }
+
+    // 2. Flutuação Orgânica em Camadas (High Quality & Full Mode)
     if (M.quality === 'high' && M.mode === 'full') {
       if (badge) {
         const badgeFloat = gsap.to(badge, {
-          y: -7,
-          duration: 2.6,
+          y: -8,
+          rotate: 2.5,
+          duration: 2.7,
           ease: 'sine.inOut',
           yoyo: true,
           repeat: -1,
@@ -90,8 +141,9 @@
 
       if (dog) {
         const dogFloat = gsap.to(dog, {
-          y: -5,
-          duration: 3.4,
+          y: -6,
+          rotate: -0.5,
+          duration: 3.5,
           ease: 'sine.inOut',
           yoyo: true,
           repeat: -1,
@@ -100,38 +152,215 @@
         dog._motionLoopTween = dogFloat;
         if (M.registerLoop) M.registerLoop(dog, { type: 'float' });
       }
+
+      if (ambientGlow) {
+        gsap.to(ambientGlow, {
+          scale: 1.08,
+          opacity: 0.85,
+          duration: 3.2,
+          ease: 'sine.inOut',
+          yoyo: true,
+          repeat: -1
+        });
+      }
+
+      particles.forEach((part, idx) => {
+        gsap.to(part, {
+          y: (idx % 2 === 0 ? -12 : -8),
+          rotate: (idx % 2 === 0 ? 15 : -15),
+          duration: 2.4 + idx * 0.4,
+          ease: 'sine.inOut',
+          yoyo: true,
+          repeat: -1
+        });
+      });
     }
 
-    // 3. Parallax Sutil de Rolagem (0.05 a 0.08)
-    if (typeof ScrollTrigger !== 'undefined' && M.quality === 'high' && M.mode === 'full') {
-      if (dog) {
-        gsap.to(dog, {
-          yPercent: 12,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: hero,
-            start: 'top top',
-            end: 'bottom top',
-            scrub: true
-          }
+    // 3. Interactive 3D Mouse Parallax & Cinematic Tilt (Desktop & Fine Pointer)
+    const isFinePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    if (isFinePointer && M.quality === 'high' && M.mode === 'full') {
+      let mouseX = 0;
+      let mouseY = 0;
+
+      hero.addEventListener('mousemove', (e) => {
+        if (M.mode === 'paused') return;
+        const rect = hero.getBoundingClientRect();
+        mouseX = (e.clientX - rect.left) / rect.width - 0.5;
+        mouseY = (e.clientY - rect.top) / rect.height - 0.5;
+
+        if (dog) {
+          gsap.to(dog, {
+            x: mouseX * 28,
+            y: mouseY * 18,
+            rotate: -1.5 + mouseX * 3.5,
+            duration: 0.9,
+            ease: 'power2.out',
+            overwrite: 'auto'
+          });
+        }
+
+        if (badge) {
+          gsap.to(badge, {
+            x: -mouseX * 42,
+            y: -mouseY * 28,
+            rotate: -mouseX * 8,
+            duration: 0.8,
+            ease: 'power2.out',
+            overwrite: 'auto'
+          });
+        }
+
+        if (ambientGlow) {
+          gsap.to(ambientGlow, {
+            x: mouseX * 32,
+            y: mouseY * 22,
+            duration: 1.0,
+            ease: 'power2.out',
+            overwrite: 'auto'
+          });
+        }
+
+        particles.forEach((part, idx) => {
+          const factor = (idx === 0 ? 46 : (idx === 1 ? -32 : 38));
+          gsap.to(part, {
+            x: mouseX * factor,
+            y: mouseY * factor * 0.7,
+            duration: 0.8 + idx * 0.1,
+            ease: 'power2.out',
+            overwrite: 'auto'
+          });
         });
+
+        if (blobWrapper) {
+          gsap.to(blobWrapper, {
+            x: -mouseX * 15,
+            y: -mouseY * 10,
+            duration: 1.2,
+            ease: 'power2.out',
+            overwrite: 'auto'
+          });
+        }
+      });
+
+      hero.addEventListener('mouseleave', () => {
+        if (dog) gsap.to(dog, { x: 0, y: 0, rotate: -1.5, duration: 1.2, ease: 'power2.out' });
+        if (badge) gsap.to(badge, { x: 0, y: 0, rotate: 0, duration: 1.2, ease: 'power2.out' });
+        if (ambientGlow) gsap.to(ambientGlow, { x: 0, y: 0, duration: 1.2, ease: 'power2.out' });
+        particles.forEach(part => gsap.to(part, { x: 0, y: 0, duration: 1.2, ease: 'power2.out' }));
+        if (blobWrapper) gsap.to(blobWrapper, { x: 0, y: 0, duration: 1.4, ease: 'power2.out' });
+      });
+
+      // Magnetic Hover Physics no Badge
+      if (badge) {
+        badge.addEventListener('mousemove', (e) => {
+          const bRect = badge.getBoundingClientRect();
+          const bX = (e.clientX - bRect.left) - bRect.width / 2;
+          const bY = (e.clientY - bRect.top) - bRect.height / 2;
+          gsap.to(badge, {
+            x: bX * 0.35,
+            y: bY * 0.35,
+            scale: 1.06,
+            duration: 0.3,
+            ease: 'power2.out',
+            overwrite: 'auto'
+          });
+        });
+        badge.addEventListener('mouseleave', () => {
+          gsap.to(badge, {
+            x: 0,
+            y: 0,
+            scale: 1,
+            duration: 0.6,
+            ease: 'elastic.out(1, 0.4)',
+            overwrite: 'auto'
+          });
+        });
+      }
+
+      // Design Spell: Energetic Paw Wiggle on Click/Hover
+      if (pawIcon) {
+        pawIcon.addEventListener('mouseenter', () => {
+          gsap.to(pawIcon, {
+            scale: 1.4,
+            rotate: 20,
+            duration: 0.25,
+            ease: 'back.out(2)'
+          });
+        });
+        pawIcon.addEventListener('mouseleave', () => {
+          gsap.to(pawIcon, {
+            scale: 1,
+            rotate: 0,
+            duration: 0.4,
+            ease: 'elastic.out(1, 0.4)'
+          });
+        });
+      }
+    }
+
+    // 4. Multi-Plane Cinematic Scroll Parallax (Scrubbing Depth)
+    if (typeof ScrollTrigger !== 'undefined' && M.quality === 'high' && M.mode === 'full') {
+      const scrollTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: hero,
+          start: 'top top',
+          end: 'bottom top',
+          scrub: 0.5
+        }
+      });
+
+      if (textCol) {
+        scrollTl.to(textCol, {
+          yPercent: -28,
+          opacity: 0.18,
+          ease: 'none'
+        }, 0);
+      }
+
+      if (dog) {
+        scrollTl.to(dog, {
+          yPercent: 24,
+          scale: 1.05,
+          ease: 'none'
+        }, 0);
       }
 
       if (badge) {
-        gsap.to(badge, {
-          yPercent: -15,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: hero,
-            start: 'top top',
-            end: 'bottom top',
-            scrub: true
-          }
-        });
+        scrollTl.to(badge, {
+          yPercent: -42,
+          rotate: 20,
+          opacity: 0.25,
+          ease: 'none'
+        }, 0);
+      }
+
+      if (ambientGlow) {
+        scrollTl.to(ambientGlow, {
+          yPercent: 18,
+          scale: 1.25,
+          opacity: 0,
+          ease: 'none'
+        }, 0);
+      }
+
+      if (blobWrapper) {
+        scrollTl.to(blobWrapper, {
+          yPercent: 14,
+          scale: 1.08,
+          ease: 'none'
+        }, 0);
+      }
+
+      if (particles.length > 0) {
+        scrollTl.to(particles, {
+          yPercent: -65,
+          opacity: 0,
+          ease: 'none'
+        }, 0);
       }
     }
 
-    console.log('[Motion] Seção 01: Hero inicializada com sucesso.');
+    console.log('[Motion] Seção 01: Hero cinematográfico inicializado com sucesso.');
   }
 
   // --------------------------------------------------------------------------

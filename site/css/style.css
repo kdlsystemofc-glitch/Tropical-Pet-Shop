@@ -209,6 +209,41 @@ body {
   z-index: 3;
 }
 
+/* Pill de Tradição 28 Anos */
+.hero-pill-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: rgba(255, 96, 0, 0.08);
+  border: 1px solid rgba(255, 96, 0, 0.22);
+  color: #C84C00;
+  font-family: var(--font-display);
+  font-size: clamp(0.7rem, 0.8vw, 0.8rem);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.4rem 0.95rem;
+  border-radius: 9999px;
+  width: fit-content;
+  margin-bottom: 1.1rem;
+  box-shadow: 0 2px 8px rgba(255, 96, 0, 0.06);
+}
+
+.pulse-indicator {
+  width: 7px;
+  height: 7px;
+  background-color: #FF6000;
+  border-radius: 50%;
+  box-shadow: 0 0 0 0 rgba(255, 96, 0, 0.6);
+  animation: pulse-ring 2.4s infinite ease-out;
+}
+
+@keyframes pulse-ring {
+  0% { box-shadow: 0 0 0 0 rgba(255, 96, 0, 0.6); }
+  70% { box-shadow: 0 0 0 7px rgba(255, 96, 0, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(255, 96, 0, 0); }
+}
+
 .hero-heading {
   font-family: var(--font-display);
   font-weight: 900;
@@ -236,6 +271,13 @@ body {
   font-size: 0.85em;
   display: inline-block;
   vertical-align: middle;
+  cursor: pointer;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transform-origin: center;
+}
+
+.hero-paw-icon:hover {
+  transform: scale(1.35) rotate(15deg);
 }
 
 .hero-subtext {
@@ -244,7 +286,75 @@ body {
   font-weight: 500;
   color: #5A4335;
   line-height: 1.45;
-  max-width: 420px;
+  max-width: 440px;
+}
+
+/* Linha de Ações e Prova Social do Hero */
+.hero-actions-row {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  margin-top: 1.6rem;
+}
+
+@media (min-width: 520px) {
+  .hero-actions-row {
+    flex-direction: row;
+    align-items: center;
+    gap: 1.5rem;
+  }
+}
+
+.btn-hero-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  min-height: 52px;
+  background: linear-gradient(135deg, #FF6000 0%, #E65500 100%);
+  color: #FFFFFF;
+  font-family: var(--font-display);
+  font-size: 0.88rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  padding: 0.85rem 1.85rem;
+  border-radius: 9999px;
+  text-decoration: none;
+  box-shadow: 0 8px 24px -4px rgba(255, 96, 0, 0.4), 0 4px 10px -2px rgba(255, 96, 0, 0.2);
+  touch-action: manipulation;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease, background 0.25s ease;
+  position: relative;
+  overflow: hidden;
+  will-change: transform;
+}
+
+.btn-hero-cta:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 14px 30px -4px rgba(255, 96, 0, 0.5), 0 6px 14px -2px rgba(255, 96, 0, 0.3);
+}
+
+.btn-hero-cta .cta-arrow-icon {
+  transition: transform 0.25s ease;
+}
+
+.btn-hero-cta:hover .cta-arrow-icon {
+  transform: translateX(4px);
+}
+
+.hero-trust-badge {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  color: #685950;
+}
+
+.trust-stars {
+  color: #FFA41B;
+  font-size: 0.95rem;
+  letter-spacing: 0.1em;
+  line-height: 1;
 }
 
 .hero-visual-col {
@@ -253,6 +363,60 @@ body {
   align-items: center;
   justify-content: center;
   min-height: clamp(340px, 36vw, 490px);
+}
+
+/* Aura Cinematográfica Ambiental Atrás do Pet */
+.hero-ambient-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: clamp(280px, 32vw, 480px);
+  height: clamp(280px, 32vw, 480px);
+  background: radial-gradient(circle, rgba(255, 120, 30, 0.24) 0%, rgba(255, 212, 180, 0.08) 55%, transparent 75%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 2;
+  filter: blur(25px);
+}
+
+/* Partículas Flutuantes Sutis */
+.hero-floating-particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 4;
+}
+
+.particle {
+  position: absolute;
+  color: #E5A852;
+  font-size: 1.1rem;
+  line-height: 1;
+  opacity: 0.75;
+  filter: drop-shadow(0 2px 6px rgba(229, 168, 82, 0.4));
+  user-select: none;
+  pointer-events: none;
+}
+
+.particle-1 {
+  top: 15%;
+  left: 10%;
+  font-size: 1.25rem;
+}
+
+.particle-2 {
+  bottom: 20%;
+  left: 18%;
+  font-size: 0.95rem;
+  opacity: 0.6;
+}
+
+.particle-3 {
+  top: 32%;
+  right: 6%;
+  font-size: 1.4rem;
+  opacity: 0.7;
 }
 
 /* O blob laranja orgânico fiel ao mockup — Full-Bleed na Lateral Direita */
