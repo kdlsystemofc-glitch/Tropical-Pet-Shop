@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+  Sitemap XML — Tropical Pet Shop
+  Configuração de domínio: veja seo.config.json.
+  Quando o domínio definitivo estiver registrado e ativo, atualize a tag <loc> com a URL final.
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <!-- Substitua pelo domínio definitivo configurado em seo.config.json -->
+    <loc>https://www.tropicalpetshop.com.br/</loc>
+    <lastmod>2026-10-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+</urlset>

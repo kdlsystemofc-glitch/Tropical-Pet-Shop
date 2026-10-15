@@ -1,2 +1,5 @@
 User-agent: *
 Allow: /
+
+# Sitemap: descomente e insira o domínio definitivo após publicação (veja seo.config.json)
+# Sitemap: https://www.tropicalpetshop.com.br/sitemap.xml

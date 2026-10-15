@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Configuração Central de SEO & Domínio — Tropical Pet Shop",
+  "description": "Arquivo único de configuração de domínio para ativação de tags canônicas, sitemap e Open Graph.",
+  "domain": "",
+  "suggestedDomain": "https://www.tropicalpetshop.com.br",
+  "business": {
+    "name": "Tropical Pet Shop",
+    "alternateName": "Tropical Pet",
+    "telephone": "+55-11-96036-5965",
+    "address": {
+      "streetAddress": "Rua Espanha, 415",
+      "neighborhood": "Vila Santa Luzia",
+      "city": "São Bernardo do Campo",
+      "state": "SP",
+      "postalCode": "09671-050",
+      "country": "BR"
+    },
+    "social": {
+      "instagram": "https://www.instagram.com/tropicalpetshop"
+    }
+  },
+  "instructions": "Enquanto o domínio definitivo não estiver registrado e apontado, o campo 'domain' permanece vazio (''). Quando o domínio definitivo estiver ativo, preencha o campo 'domain' (ex: 'https://www.tropicalpetshop.com.br') e descomente as tags canonical, og:url, og:image absoluta e sitemap no index.html e sitemap.xml conforme documentado."
+}
